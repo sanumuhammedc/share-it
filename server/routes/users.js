@@ -1,5 +1,5 @@
 import express from "express";
-import { updateUser, deleteUser, getUser, followUser, unFollowUser, getFollowing } from "../controllers/users.js";
+import { updateUser, deleteUser, getUser, followUser, unFollowUser, getFollowing, getAllUsers } from "../controllers/users.js";
 
 const router = express.Router();
 
@@ -9,6 +9,6 @@ router.get('/', getUser);
 router.put('/:id/follow', followUser);
 router.put('/:id/unfollow', unFollowUser);
 router.get('/following/:userId', getFollowing);
-// router.get("/all", getAllUsers)
+router.get("/all", getAllUsers)
 
 export default router;

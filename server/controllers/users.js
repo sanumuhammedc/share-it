@@ -146,6 +146,13 @@ export const getFollowing = async (req, res) => {
     }
 }
 
-//function to get all users from db
-wx
-    
+export const getAllUsers = async (req, res) => {
+    //fetch all users from database
+    try {
+        const users = await userSchema.find();
+        res.status(200).json(users);
+    }
+    catch (error) {
+        res.status(500).json(error);
+    }
+};

@@ -13,14 +13,13 @@ export default function Profile() {
 
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 
-  const [User, setUser] = useState({});
+  const [user, setUser] = useState({});
   const username = useParams().username;
 
   useEffect(() => {
     const fetchUser = async () => {
       const res = await axios.get(`/users/?username=${username}`);
       setUser(res.data);
-      console.log(res.data);
     };
     fetchUser();
   }, [username]);
@@ -35,23 +34,23 @@ export default function Profile() {
             <div className="profileCover">
               <img
                 className="profileCoverImg"
-                src={User.coverPicture || PF + "person/noCover.png"}
+                src={user.coverPicture || PF + "person/noCover.png"}
                 alt=""
               />
               <img
                 className="profileUserImg"
-                src={User.profilePicture? PF + User.profilePicture :PF + "person/noAvatar.png"}
+                src={user.profilePicture? PF + user.profilePicture :PF + "person/noAvatar.png"}
                 alt=""
               />
             </div>
             <div className="profileInfo">
-                <h4 className="profileInfoName">{User.username}</h4>
-                <span className="profileInfoDesc">{User.desc}</span>
+                <h4 className="profileInfoName">{user.username}</h4>
+                <span className="profileInfoDesc">{user.desc}</span>
             </div>
           </div>
           <div className="profileRightBottom">
             <Feed username={username} />
-            <Rightbar user={User} />
+            <Rightbar user={user} />
           </div>
         </div>
       </div>

@@ -29,7 +29,7 @@ export default function Topbar() {
         <Link to={"/search"} className="topbarCenter">
             <div className="searchbar">
                 <Search className="searchIcon" />
-                <input  className="searchInput" placeholder="Search for friends, posts or videos" />
+                <input  className="searchInput" placeholder="Search for friends" />
               </div>
         </Link>
 

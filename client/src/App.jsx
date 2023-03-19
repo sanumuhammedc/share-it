@@ -10,7 +10,7 @@ import Register from "./pages/register/Register";
 import Profile from "./pages/profile/Profile";
 import { useContext } from "react";
 import { AuthContext } from "./context/AuthContext";
-import Search from "./pages/search/Search";
+import SearchPage from "./pages/search/SearchPage";
 
 function App() {
 
@@ -20,7 +20,7 @@ function App() {
     <Router>
     <Routes>
       <Route exact path="/" element={user?<Home/>:<Register/>} />
-      <Route path="/search" element={<Search/>} />
+      <Route path="/search" element={<SearchPage/>} />
       <Route path="/login" element={user? <Navigate to="/" /> :<Login/>} />
       <Route path="/register" element={user? <Navigate to="/" /> :<Register />} />
       <Route path="/profile/:username" element={<Profile />} />
