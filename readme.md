@@ -20,7 +20,8 @@
 - users can follow other users(add as friend) or unfollow
 - users can view posts of friends
 - can view other users and their friends
-- can search for users
+- can search for users and view their posts and profile
+- can view mutual friends of two users
 
 ## Technologies Used
 - react
@@ -29,4 +30,4 @@
 - mongodb
 
 ## Demo video
-https://www.loom.com/share/3c86e5db4d414358a7cfa77a24e1f776
+https://www.loom.com/share/8ddbf185926a49719fa88b9d0ca00573
