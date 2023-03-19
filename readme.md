@@ -20,6 +20,7 @@
 - users can follow other users(add as friend) or unfollow
 - users can view posts of friends
 - can view other users and their friends
+- can search for users
 
 ## Technologies Used
 - react
