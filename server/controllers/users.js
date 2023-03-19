@@ -56,9 +56,12 @@ export const deleteUser = async (req, res) => {
 }
 
 export const getUser = async (req, res) => {
+    
+    const userId = req.query.userId;
+    const username = req.query.username;
 
     try {
-        const user = await userSchema.findById(req.params.id);
+        const user = userId ? await userSchema.findById(userId) : await userSchema.findOne({username: username});
         const { password, updatedAt, ...other } = user._doc;
         res.status(200).json(other); 
     } catch (error) {
@@ -119,4 +122,26 @@ export const unFollowUser = async (req, res) => {
 
     } 
 
+}
+
+export const getFollowing = async (req, res) => {
+
+    try {
+
+        const user = await userSchema.findById(req.params.userId);
+        const following = await Promise.all(
+            user.following.map((friendId) => {
+                return userSchema.findById(friendId)
+            })
+        );
+        let followingList = [];
+        following.map((friend) => {
+            const { _id, username, profilePicture } = friend;
+            followingList.push({ _id, username, profilePicture });
+        });
+        res.status(200).json(followingList);
+
+    } catch (error) {
+        res.status(500).json(error);   
+    }
 }
