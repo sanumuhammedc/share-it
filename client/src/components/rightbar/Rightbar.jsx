@@ -11,6 +11,7 @@ import { Add, Remove } from '@mui/icons-material';
 export default function Rightbar({ user }) {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const [friends, setFriends] = useState([]);
+  const[mutualFriends, setMutualFriends] = useState([]);
   const { user: currentUser, dispatch } = useContext(AuthContext);
   const [followed, setFollowed] = useState(false);
 
@@ -23,12 +24,13 @@ export default function Rightbar({ user }) {
       try {
         const friendList = await axios.get("/users/following/" + user._id);
         setFriends(friendList.data);
+        setMutualFriends(friendList.data.filter((f) => currentUser.following.includes(f._id)));
       } catch (err) {
         console.log(err);
       }
     };
     getFriends();
-  }, [user]);
+  }, [user, currentUser]);
 
   const handleClick = async () => {
     try {
@@ -121,6 +123,33 @@ export default function Rightbar({ user }) {
             </Link>
           ))}
         </div>
+
+        {(currentUser._id !== user._id) && 
+          <div>
+          <h4 className="rightbarTitle">Mutual friends</h4>
+          <div className="rightbarFollowings">
+            {mutualFriends.map((friend) => (
+              <Link
+                to={"/profile/" + friend.username}
+                style={{ textDecoration: "none" }}
+              >
+                <div className="rightbarFollowing">
+                  <img
+                    src={
+                      friend.profilePicture
+                        ? PF + friend.profilePicture
+                        : PF + "person/noAvatar.png"
+                    }
+                    alt=""
+                    className="rightbarFollowingImg"
+                  />
+                  <span className="rightbarFollowingName">{friend.username}</span>
+                </div>
+              </Link>
+            ))}
+          </div>
+          </div>
+      }
       </>
     );
   };
