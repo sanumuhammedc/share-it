@@ -9,5 +9,6 @@ router.get('/', getUser);
 router.put('/:id/follow', followUser);
 router.put('/:id/unfollow', unFollowUser);
 router.get('/following/:userId', getFollowing);
+// router.get("/all", getAllUsers)
 
 export default router;

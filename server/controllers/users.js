@@ -145,3 +145,7 @@ export const getFollowing = async (req, res) => {
         res.status(500).json(error);   
     }
 }
+
+//function to get all users from db
+wx
+    
