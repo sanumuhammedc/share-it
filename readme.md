@@ -28,6 +28,3 @@
 - nodejs
 - express
 - mongodb
-
-## Demo video
-https://www.loom.com/share/8ddbf185926a49719fa88b9d0ca00573
